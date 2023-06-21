@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 import { Module,NestModule,MiddlewareConsumer } from "@nestjs/common";
-import { PrismaClientModule } from "src/utils/PrismaClient/prisma.module";
 import { emailCheckerMiddleware } from "../utils/middleware/emailChecker.middleware";
 import { UserContoller } from "./user.contoller";
 import { UserService } from "./user.service";
@@ -19,7 +18,6 @@ import { ConfigModule, ConfigService } from "@nestjs/config/dist";
  exports:[UserService],
  imports:[
      MailModule,
-     PrismaClientModule,
      JwtModule.registerAsync({
       imports:[ConfigModule],
       global:true,
