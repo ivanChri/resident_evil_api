@@ -1,0 +1,127 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model chars {
+  id                                Int     @id @default(autoincrement())
+  name                              String
+  img                               String?
+  gender_id                         Int
+  birth                             String?
+  height                            String?
+  weight                            String?
+  status_id                         Int?
+  first_debut_id                    Int
+  last_debut_id                     Int
+  lore                              String  @db.VarChar(1500)
+  isBoss                            Boolean
+  games_chars_first_debut_idTogames games   @relation("chars_first_debut_idTogames", fields: [first_debut_id], references: [id], onDelete: NoAction, map: "Chars_first_debut_id_fkey")
+  gender                            gender  @relation(fields: [gender_id], references: [id], onDelete: NoAction, map: "Chars_gender_id_fkey")
+  games_chars_last_debut_idTogames  games   @relation("chars_last_debut_idTogames", fields: [last_debut_id], references: [id], onDelete: NoAction, map: "Chars_last_debut_id_fkey")
+  status                            status? @relation(fields: [status_id], references: [id], map: "Chars_status_id_fkey")
+  games_bosschartogames             games[] @relation("bosschartogames")
+  games_chartogames                 games[] @relation("chartogames")
+
+  @@index([first_debut_id], map: "Chars_first_debut_id_fkey")
+  @@index([gender_id], map: "Chars_gender_id_fkey")
+  @@index([last_debut_id], map: "Chars_last_debut_id_fkey")
+  @@index([name], map: "Chars_name_idx")
+  @@index([status_id], map: "Chars_status_id_fkey")
+}
+
+model creature {
+  id                       Int                    @id @default(autoincrement())
+  name                     String
+  desc                     String                 @db.VarChar(1500)
+  creationBased_id         Int?
+  isBoss                   Boolean
+  img                      String?
+  creature_basecreation    creature_basecreation? @relation(fields: [creationBased_id], references: [id], map: "Creature_creationBased_id_fkey")
+  creature_mutations       creature_mutations[]
+  creature_variants        creature_variants[]
+  games_creturebosstogames games[]                @relation("creturebosstogames")
+  games_gamestocreature    games[]                @relation("gamestocreature")
+
+  @@index([creationBased_id], map: "Creature_creationBased_id_fkey")
+  @@index([name], map: "Creature_name_idx")
+}
+
+model creature_basecreation {
+  id                 Int                  @id @default(autoincrement())
+  based              String
+  desc               String               @db.VarChar(2000)
+  img                String?
+  creature           creature[]
+  creature_mutations creature_mutations[]
+}
+
+model creature_mutations {
+  id                      Int                    @id @default(autoincrement())
+  name                    String
+  desc                    String                 @db.VarChar(1500)
+  based_id                Int?
+  img                     String?
+  mutationBaseCreation_id Int?
+  creature                creature?              @relation(fields: [based_id], references: [id], map: "Creature_Mutations_based_id_fkey")
+  creature_basecreation   creature_basecreation? @relation(fields: [mutationBaseCreation_id], references: [id], map: "Creature_Mutations_mutationBaseCreation_id_fkey")
+
+  @@index([based_id], map: "Creature_Mutations_based_id_fkey")
+  @@index([mutationBaseCreation_id], map: "Creature_Mutations_mutationBaseCreation_id_fkey")
+}
+
+model creature_variants {
+  id       Int       @id @default(autoincrement())
+  name     String
+  desc     String    @db.VarChar(1500)
+  based_id Int?
+  img      String?
+  creature creature? @relation(fields: [based_id], references: [id], map: "Creature_Variants_based_id_fkey")
+
+  @@index([based_id], map: "Creature_Variants_based_id_fkey")
+}
+
+model games {
+  id                                Int        @id @default(autoincrement())
+  title                             String     @db.VarChar(50)
+  releaseYear                       String
+  gameDesc                          String     @db.VarChar(1200)
+  poster                            String
+  chars_chars_first_debut_idTogames chars[]    @relation("chars_first_debut_idTogames")
+  chars_chars_last_debut_idTogames  chars[]    @relation("chars_last_debut_idTogames")
+  chars_bosschartogames             chars[]    @relation("bosschartogames")
+  chars_chartogames                 chars[]    @relation("chartogames")
+  creature_creturebosstogames       creature[] @relation("creturebosstogames")
+  creature_gamestocreature          creature[] @relation("gamestocreature")
+  platfrom                          platfrom[] @relation("gametoplatfrom")
+
+  @@index([title], map: "Games_title_idx")
+}
+
+model gender {
+  id     Int     @id @default(autoincrement())
+  gender String
+  chars  chars[]
+}
+
+model platfrom {
+  id    Int     @id @default(autoincrement())
+  name  String
+  games games[] @relation("gametoplatfrom")
+}
+
+model status {
+  id     Int     @id @default(autoincrement())
+  status String
+  chars  chars[]
+}
+
+model user {
+  id     Int    @id @default(autoincrement())
+  email  String @unique(map: "User_email_key") @db.VarChar(100)
+  apiKey String @unique(map: "User_apiKey_key") @db.VarChar(50)
+}
