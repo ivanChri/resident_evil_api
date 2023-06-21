@@ -2,7 +2,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { PrismaClientModule } from '../src/utils/PrismaClient/prisma.module';
-import { PrismaClientService } from './../src/utils/PrismaClient/prismaClient.service';
+import { PrismaClientService } from '../src/utils/PrismaClient/prisma.service';
 import * as request from 'supertest';
 import { CharsModule } from './../src/chars/chars.module';
 describe('AuthGuard e2e test',() => {

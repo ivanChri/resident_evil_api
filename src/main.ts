@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SuccesResponseInterceptor } from './utils/middleware/SuccesResponse.interceptor';
 import { ResponseExceptionFilter } from './utils/middleware/ResponseException.filter';
-import { PrismaClientService } from './utils/PrismaClient/prismaClient.service';
+import { PrismaClientService } from './utils/PrismaClient/prisma.service';
 async function bootstrap() {
   const port = process.env.PORT || 3000;
   const app = await NestFactory.create(AppModule);

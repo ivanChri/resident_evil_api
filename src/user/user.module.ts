@@ -7,7 +7,7 @@ import { UserService } from "./user.service";
 import { MailModule } from "../utils/MailService/mail.module";
 import { UserRepository } from "./user.repository";
 import { JwtModule } from "@nestjs/jwt";
-import { PrismaClientService } from "../utils/PrismaClient/prismaClient.service";
+import { PrismaClientService } from "../utils/PrismaClient/prisma.service";
 import { ConfigModule, ConfigService } from "@nestjs/config/dist";
 @Module({
  controllers:[UserContoller],

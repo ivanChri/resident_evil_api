@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from "@nestjs/common";
-import { PrismaClientService } from "src/utils/prismaClient/prismaClient.service";
+import { PrismaClientService } from "src/utils/PrismaClient/prisma.service";
 import { Prisma,creature } from "@prisma/client";
 @Injectable()
 export class CreatureRepository {
