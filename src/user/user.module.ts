@@ -8,7 +8,6 @@ import { UserRepository } from "./user.repository";
 import { JwtModule } from "@nestjs/jwt";
 import { PrismaClientService } from "../utils/PrismaClient/prismaClient.service";
 import { ConfigModule, ConfigService } from "@nestjs/config/dist";
-import { PrismaClientModule } from "../utils/prismaClient/prismaClient.module";
 @Module({
  controllers:[UserContoller],
  providers:[
@@ -27,7 +26,6 @@ import { PrismaClientModule } from "../utils/prismaClient/prismaClient.module";
       }),
       inject: [ConfigService],
     }),
-  PrismaClientModule
 ]
 })
 export class UserModule implements NestModule{
