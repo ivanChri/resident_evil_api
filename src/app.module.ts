@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
+import { PrismaClientModule } from 'src/utils/prismaClient/prismaClient.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { ConfigService } from '@nestjs/config';
@@ -9,7 +10,6 @@ import { UserModule } from './user/user.module';
 import { CharsModule } from './chars/chars.module';
 import { MailModule } from './utils/MailService/mail.module';
 import { GamesModule } from './games/games.module';
-import { PrismaClientModule } from './utils/prismaClient/prismaClient.module';
 import { CreatureModule } from './creature/creature.module';
 @Module({
   imports: [
@@ -29,8 +29,8 @@ import { CreatureModule } from './creature/creature.module';
    MailModule,
    CharsModule,
    GamesModule,
-   PrismaClientModule,
-   CreatureModule
+   CreatureModule,
+   PrismaClientModule
   ],
   providers:[
     {
