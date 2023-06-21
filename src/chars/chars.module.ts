@@ -4,14 +4,13 @@ import { CharsController } from "./chars.controller";
 import { CharsService } from "./chars.service";
 import { AuthModule } from "../auth/auth.module";
 import { CharsRepository } from "./chars.repository";
-import { PrismaClientService } from "src/utils/PrismaClient/prismaClient.service";
+import { PrismaClientModule } from "../utils/prismaClient/prismaClient.module";
 @Module({
   controllers:[CharsController],
   providers:[
    CharsService,
    CharsRepository,
-   PrismaClientService
   ],
-  imports:[AuthModule]
+  imports:[AuthModule,PrismaClientModule]
 })
 export class CharsModule {};

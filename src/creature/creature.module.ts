@@ -4,14 +4,13 @@ import { CreatureRepository } from "./creature.repository";
 import { AuthModule } from "../auth/auth.module";
 import { CreatureController } from "./creature.controller";
 import { CreatureService } from "./creature.service";
-import { PrismaClientService } from "src/utils/PrismaClient/prismaClient.service";
+import { PrismaClientModule } from "src/utils/prismaClient/prismaClient.module";
 @Module({
     providers:[
      CreatureRepository,
      CreatureService,
-     PrismaClientService
     ],
     controllers:[CreatureController],
-    imports:[AuthModule]
+    imports:[AuthModule,PrismaClientModule]
 })
 export class CreatureModule {}
