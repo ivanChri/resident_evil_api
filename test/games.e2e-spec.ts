@@ -2,7 +2,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { PrismaClientModule } from './../src/utils/prismaClient/prismaClient.module';
+import { PrismaClientModule } from '../src/utils/PrismaClient/prisma.module';
 import { PrismaClientService } from './../src/utils/PrismaClient/prismaClient.service';
 import { GamesModule } from './../src/games/games.module';
 describe('GET /games', () => {

@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
-import { PrismaClientModule } from 'src/utils/prismaClient/prismaClient.module';
+import { PrismaClientModule } from 'src/utils/PrismaClient/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { ConfigService } from '@nestjs/config';

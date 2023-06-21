@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
-import { PrismaClientModule } from './../src/utils/prismaClient/prismaClient.module';
+import { PrismaClientModule } from '../src/utils/PrismaClient/prisma.module';
 import { PrismaClientService } from './../src/utils/PrismaClient/prismaClient.service';
 import * as request from 'supertest';
 import { CharsModule } from './../src/chars/chars.module';
