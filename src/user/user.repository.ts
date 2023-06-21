@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
-import { PrismaClientService } from '../utils/PrismaClient/prismaClient.service';
+import { PrismaClientService } from 'src/utils/PrismaClient/prismaClient.service';
 import { Prisma,user } from '@prisma/client';
 @Injectable()
 export class UserRepository {
