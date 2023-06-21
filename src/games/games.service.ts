@@ -58,6 +58,18 @@ export class GamesService {
                     name:true
                 }
             },
+            creature_creturebosstogames:{
+              select:{
+                id:true,
+                name:true
+              }
+            },
+            chars_bosschartogames:{
+              select:{
+                id:true,
+                name:true
+              }
+            }
           }
         });
         if(!game.length) throw new NotFoundException (
