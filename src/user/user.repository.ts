@@ -13,7 +13,4 @@ export class UserRepository {
     const {where} = Params;
     return this.prisma.user.findUnique({where})
   }
-  async delete () {
-    return await this.prisma.user.deleteMany();
-  }
 }

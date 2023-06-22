@@ -84,7 +84,11 @@ export class CreatureService {
         if(!filterCreature.length) throw new NotFoundException (
           `cannot find creature from given query`
         );
-        return filterCreature;
+        return {
+           data:filterCreature,
+           size:filterCreature.length,
+           result_total : await this.creatureRepository.getTotalCreature()
+        };
      } catch (error) {
          throw error;
      }
