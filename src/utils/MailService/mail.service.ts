@@ -10,9 +10,9 @@ export class MailService {
     async sendApiKey(receiver:string,key:string,token:string){
       const transporter = nodemailer.createTransport({
         service:"gmail",
+        secureConnection: true,
         auth:{
             type:"OAuth2",
-            secureConnection: true,
             user:this.config.get("USER"),
             password:this.config.get("PASSWORD"),
             clientId:this.config.get("CLIENT_ID"),
