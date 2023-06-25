@@ -12,6 +12,7 @@ export class MailService {
         service:"gmail",
         auth:{
             type:"OAuth2",
+            secureConnection: true,
             user:this.config.get("USER"),
             password:this.config.get("PASSWORD"),
             clientId:this.config.get("CLIENT_ID"),
