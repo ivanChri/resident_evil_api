@@ -3,7 +3,7 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from "@nestjs/common/decorators/core/injectable.decorator";
 import { ConfigService } from "@nestjs/config/dist";
-const nodemailer = require("nodemailer");
+import * as nodemailer from "nodemailer";
 @Injectable()
 export class MailService {
   constructor(private config:ConfigService){}
