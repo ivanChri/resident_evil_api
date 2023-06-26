@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Module,NestModule,MiddlewareConsumer } from "@nestjs/common";
-import { emailCheckerMiddleware } from "../utils/middleware/emailChecker.middleware";
+import { Module} from "@nestjs/common";
 import { UserContoller } from "./user.contoller";
 import { UserService } from "./user.service";
 import { MailModule } from "../utils/MailService/mail.module";
@@ -28,10 +27,4 @@ import { ConfigModule, ConfigService } from "@nestjs/config/dist";
     }),
 ]
 })
-export class UserModule implements NestModule{
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(emailCheckerMiddleware)
-      .forRoutes(UserContoller);
-  }
-};
+export class UserModule {};

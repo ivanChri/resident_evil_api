@@ -21,18 +21,30 @@ export class MailService {
         pass: this.config.get("PASSWORD")
       },
       });
+      await new Promise((resolve, reject) => {
+        // verify connection configuration
+        transporter.verify( (error, success) => {
+            if (error) {
+                console.log(error);
+                reject(error);
+            } else {
+                console.log("Server is ready to take our messages");
+                resolve(success);
+            }
+        });
+    });
       const mailOptions = {
         from:this.config.get("USER"),
         to:receiver,
         subject:"apiKey",
         text:`your apikey is ${key} and  access_token: ${token}`
       };
-     return new Promise((resolve, reject) => {
-        transporter.sendMail(mailOptions, function (error, response) {
+    await new Promise((resolve, reject) => {
+        transporter.sendMail(mailOptions,(error, response) => {
               if (error) {
                   reject(error)
               } else {
-                  resolve("email sent")
+                resolve(response)
               }
           });
     })

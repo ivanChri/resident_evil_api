@@ -34,12 +34,6 @@ describe('POST /user/register', () => {
     .send({email:''})
     .expect(406)
   });
-  it('should reject if request email type is not gmail',() => {
-    return request(app.getHttpServer())
-    .post('/user/register')
-    .send({email:'test@yahho.com'})
-    .expect(406)
-  })
   afterAll(async () => {
     await app.close();
   });
