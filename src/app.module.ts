@@ -30,7 +30,7 @@ import { CreatureModule } from './creature/creature.module';
    CharsModule,
    GamesModule,
    CreatureModule,
-   PrismaClientModule
+   PrismaClientModule,
   ],
   providers:[
     {

@@ -11,7 +11,7 @@ export class UserService {
   constructor(
     private userRepository:UserRepository,
     private mailService:MailService,
-    private jwtService:JwtService
+    private jwtService:JwtService,
   ){}
   async register(dto:userDto){
      try {

@@ -9,21 +9,20 @@ export class MailService {
   constructor(private config:ConfigService){}
     async sendApiKey(receiver:string,key:string,token:string){
       const transporter = nodemailer.createTransport({
-      service:"gmail",
-      host:"smtp.gmail.com",
-      port:465,
-      secure:true,
-      auth:{
-          type:"OAuth2",
-          user:this.config.get("USER"),
-          password:this.config.get("PASSWORD"),
-          clientId:this.config.get("CLIENT_ID"),
-          clientSecret:this.config.get("CLIENT_SECRET"),
-         refreshToken:this.config.get("REFRESH_TOKEN")
-      }
+      service: "Outlook365",
+      host:"smtp.office365.com",
+      port:587,
+      tls: {
+        ciphers: "SSLv3",
+        rejectUnauthorized: false,
+      },
+      auth: {
+        user: "ItsIvan@outlook.co.id",
+        pass: "ivanCS123"
+      },
       });
       const mailOptions = {
-        from:this.config.get("USER"),
+        from:"ItsIvan@outlook.co.id",
         to:receiver,
         subject:"apiKey",
         text:`your apikey is ${key} and  access_token: ${token}`
