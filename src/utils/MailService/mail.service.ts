@@ -13,7 +13,7 @@ export class MailService {
       host:this.config.get("HOST"),
       port:587,
       tls: {
-        ciphers: "SSLv3",
+        ciphers: this.config.get("CIPHERS"),
         rejectUnauthorized: false,
       },
       auth: {
