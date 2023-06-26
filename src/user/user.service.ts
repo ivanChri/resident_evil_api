@@ -24,7 +24,7 @@ export class UserService {
      });
      const payload = {sub:user.id,email:user.email};
      const token = await this.jwtService.signAsync(payload);
-      this.mailService.sendApiKey(dto.email,key,token);
+     await this.mailService.sendApiKey(dto.email,key,token);
      return {
        message:`successful registration we will send a token to your email`
      };
