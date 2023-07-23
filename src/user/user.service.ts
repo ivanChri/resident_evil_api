@@ -19,7 +19,7 @@ export class UserService {
      const user = await this.userRepository.createUser({
        data:{
         email:dto.email,
-        apiKey:key
+        apiKey:key,
        }
      });
      const payload = {sub:user.id,email:user.email};
@@ -40,11 +40,15 @@ export class UserService {
     };
    }
   async findApiKey(key:string){
+    try {
       return await this.userRepository.getUser({
         where:{
           apiKey:key
         }
       });
+    } catch (error) {
+       throw error
+    }
   }
   async resendEmail(dto:userDto){
     try {
@@ -56,7 +60,7 @@ export class UserService {
       if(!user) return await this.register(dto);
       const payload = {sub:user.id,email:user.email};
       const token = await this.jwtService.signAsync(payload);
-       this.mailService.sendApiKey(user.email,user.apiKey,token);
+      await this.mailService.sendApiKey(user.email,user.apiKey,token);
       return {
         message:`we will try again to send token to your email`
       }
